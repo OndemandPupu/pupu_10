@@ -8,8 +8,9 @@
 
 		<form action="">
 
-			<input type="button" value="도움말" />
-			<a href="javascript:member()"> <input type="button" value="회원가입" /></a>
+			<input type="button" value="도움말" /> <a href="javascript:member()">
+				<input type="button" value="회원가입" />
+			</a>
 			<script>
 				function member() {
 
@@ -18,7 +19,8 @@
 					window.open(uri, "c", "height=400,width=300");
 				}
 			</script>
-				<a href="javascript:login()"> <input type="button" value="로그인" /> </a>
+			<a href="javascript:login()"> <input type="button" value="로그인" />
+			</a>
 			<script>
 				function login() {
 
@@ -29,7 +31,7 @@
 			</script>
 		</form>
 	</div>
-	<h1>ONDEMAND</h1>
+	<h1>Pupu</h1>
 
 
 </div>

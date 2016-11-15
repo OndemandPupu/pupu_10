@@ -21,4 +21,13 @@ public class IndexController {
 	public String memberView() {
 		return "login/memberView";
 	}
+	
+	@RequestMapping("/cart.nhn")
+	public String cartVeiw(){
+		return "/1_Header/cart";
+	}
+	
+	
+	
+	
 }
