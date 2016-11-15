@@ -13,25 +13,29 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-	
-	<nav style="margin: 0px; padding :70px; background-color: #cce6ff">
+	<div align="center">
+		<h2>
+			<i>ON DEMAND</i>
+		</h2>
+	</div>
+	<nav style="margin: 0px; padding: 30px; background-color: #cce6ff">
 		<tiles:insertAttribute name="header" />
 	</nav>
 	<div class="container" style="min-height: 600px;">
 		<div class="row">
-			<div class="col-md-3" align="left">
+			<div class="col-md-2">
 				<tiles:insertAttribute name="nav" />
 			</div>
-			<div class="col-md-6">
+			<div class="col-md-8">
 				<tiles:insertAttribute name="body" />
 			</div>
-			<div class="col-md-3">
-				
+			<div class="col-md-2">
+				<tiles:insertAttribute name="nav" />
 			</div>
 		</div>
 	</div>
-	<footer class="container-fluid text-center" style="background-color: #cce6ff"> 
-		KSH.com
-	</footer>
+	<footer class="container-fluid text-center"
+		style="background-color: #cce6ff"> KSH.com </footer>
 </body>
+
 </html>

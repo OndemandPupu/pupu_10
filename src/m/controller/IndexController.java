@@ -1,3 +1,4 @@
+
 package m.controller;
 
 import org.springframework.stereotype.Controller;
@@ -24,6 +25,7 @@ public class IndexController {
 
 	@RequestMapping("/cart.nhn")
 	public String cartVeiw() {
-		return "checkout/cart";
+		return "/1_Header/cart";
 	}
+
 }
