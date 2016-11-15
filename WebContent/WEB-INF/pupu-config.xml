@@ -18,7 +18,7 @@
 
 	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver"
 		id="beanNameViewResolver" p:order="1" />
-	<!-- 
+	
 	<bean class="org.springframework.web.servlet.view.tiles3.TilesViewResolver"
 		id="tilesViewResolver" p:order="2" />
 
@@ -31,7 +31,7 @@
 		</property>
 	</bean>
 	
-	-->
+	
 	<bean class="org.apache.tomcat.jdbc.pool.DataSource" id="ds">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
 		<property name="url" value="jdbc:oracle:thin:@121.134.125.131:1521:xe" />
@@ -51,7 +51,10 @@
 
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
-		id="internalResourceViewResolver" p:order="9" p:prefix="/WEB-INF/view/" />
+		id="internalResourceViewResolver" p:order="9" p:prefix="/WEB-INF/view/" p:suffix=".jsp"
+		/>
+		
+		
 
 	<!-- multipart 형태의 요청을 처리하는 애를 추가로 등록해야 됨 // 그중에 CommonsMultipartResolver 
 		로 처리를 하겠다고 선택을 한거고, 그리고 commons fifle library를 넣어야 함. 종류는 2-3개 정도가 있는데 .. 
