@@ -1,650 +1,490 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Cart</title>
 </head>
 <style>
-@import "compass/css3";
-
-@import
-	url(http://fonts.googleapis.com/css?family=Droid+Serif:400,400italic|Montserrat:400,700)
-	;
-
-@import "compass/reset";
-
-$
-fontSans : 'Montserrat ', sans-serif ;
- $fontSerif : 'Droid Serif ', serif ;
-
-
- @mixin transition ($transition-property, $transition-time, $method ) {
-	-webkit-transition: $transition-property$transition-time$method;
-	-moz-transition: $transition-property$transition-time$method;
-	-ms-transition: $transition-property$transition-time$method;
-	-o-transition: $transition-property$transition-time$method;
-	transition: $transition-property$transition-time$method;
+body{
+  background:#f2f3f4;
+  font-size:62%;
+  font-family:'Arial', sans-serif;
+  min-width:320px;
 }
-
-* {
-	box-sizing: border-box;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{
+  font-weight:500;
 }
-
-body {
-	color: #333;
-	-webkit-font-smoothing: antialiased;
-	font-family: $ fontSerif;
+img{
+  max-width:100%;
 }
-
-img {
-	max-width: 100%;
+#wrap{
+  width:80%;
+  margin:20px auto;
 }
-
-.cf:before, .cf:after {
-	content: " ";
-	display: table;
+#cart_layout_1{
+  color:#808080;
 }
-
-.cf:after {
-	clear: both;
+#cart_layout_1 h1{
+ font-size:3.6em;
+ line-height:.5;
 }
-
-.cf {
-	*zoom: 1;
+#cart_layout_1 .cart_info{
+  border-top:2px solid #ccc;
+  width:100%;
+  padding:1em;
+  height:270px;
+  max-height:300px;
+  border-bottom:2px solid #ccc;
 }
-
-.wrap {
-	width: 75%;
-	max-width: 960px;
-	margin: 0 auto;
-	padding: 5% 0;
-	margin-bottom: 5em;
+#cart_layout_1 .cart_info .product{
+  display:block;
+  float:left;
+  width:30%;
 }
-
-.projTitle {
-	font-family: $ fontSans;
-	font-weight: bold;
-	text-align: center;
-	font-size: 2em;
-	padding: 1em 0;
-	border-bottom: 1px solid #dadada;
-	letter-spacing: 3px;
-	text-transform: uppercase; span { font-family : $ fontSerif;
-	font-weight: normal;
-	font-style: italic;
-	text-transform: lowercase;
-	color: #777;
+#cart_layout_1 .cart_info .product img{
+  max-height:270px;
 }
-
+#cart_layout_1 .cart_info .product_info{
+  display:block;
+  float:left;
+  width:10%;
+  margin-left:5%;
+  position:relative;
+  height:100%;
 }
-//
-CART HEADER
-.heading {
-	padding: 1em 0;
-	border-bottom: 1px solid #D0D0D0; h1 { font-family : $ fontSerif;
-	font-size: 2em;
-	float: left;
+#cart_layout_1 .cart_info .product_info span{
+  font-size:1.6em;
+  color:#292929;
+  display:block;
+  font-weight:700;
 }
-
-a.continue { &:link , &:visited {
-      text-decoration : none;
-	font-family: $ fontSans;
-	letter-spacing: -.015em;
-	font-size: .75em;
-	padding: 1em;
-	color: #fff;
-	background: #82ca9c;
-	font-weight: bold;
-	border-radius: 50px;
-	float: right;
-	text-align: right;
-	@
-	include
-	transition(all,
-	.25s,
-	linear);
+.center{
+  height:30%;
+  position:absolute;
+  top:0;bottom:0;left:0;right:0;
+  margin:auto;
 }
-
-&
-:after {
-	content: "\276f";
-	padding: .5em;
-	position: relative;
-	right: 0;
-	@
-	include
-	transition(all,
-	.15s,
-	linear);
+#cart_layout_1 .cart_info .details{
+  width:50%;
+  margin-left:5%;
+  float:left;
+  height:100%;
 }
-
-&
-:hover, &:focus, &:active {
-	background: #f69679;
-	&:
-	after
-	{
-	right
-	:
-	-10px;
+#cart_layout_1 .cart_info .details .qty,
+#cart_layout_1 .cart_info .details .price,
+#cart_layout_1 .cart_info .details .remove{
+  display:block;
+  position:relative;
+  height:100%;
+  width:30%;
+  float:left;
+  text-align:center;
 }
-
+#cart_layout_1 .cart_info .details .qty span{
+  font-size:1.8em;
+  color:#292929;
 }
+#cart_layout_1 .cart_info .details .qty input{
+  width:40px;
+  height:40px;
+  border:1px solid #ccc;
+  border-radius:3px;
 }
+#cart_layout_1 .cart_info .details .price{
+  font-size:1.8em;
+  color:#292929;
+  bottom:-10px;
 }
-//
-TABLE HEADING 
-
-.tableHead {
-	display: table;
-	width: 100%;
-	font-family: $ fontSans;
-	font-size: .75em; li { display : table-cell;
-	padding: 1em 0;
-	text-align: center;
-	&.
-	prodHeader
-	{
-	text-align
-	:
-	left;
+#cart_layout_1 .cart_info .details .hidden{
+  display:none;
 }
-
+#cart_layout_1 .cart_info .details .remove{
+  font-size:4.3em;
+  float:right;
 }
+#cart_layout_1 .complete_cart{
+  width:100%;
 }
-//
-CART Items
-
-.cart {
-	padding: 1em 0; . items { display : block;
-	width: 100%;
-	vertical-align: middle;
-	padding: 1.5em;
-	border-bottom: 1px solid #fafafa;
-	&.
-	even
-	{
-	background
-	:
-	#fafafa;
+#cart_layout_1 .complete_cart .updated{
+  width:50%;
+  float:left;
 }
-
-.infoWrap {
-	display: table;
-	width: 100%;
+#cart_layout_1 .complete_cart .updated .shipping{
+  border-bottom:2px solid #ccc;
+  height:auto;
+  float:left;
+  width:100%;
 }
-
-.cartSection {
-	display: table-cell;
-	vertical-align: middle; . itemNumber { font-size : .75em;
-	color: #777;
-	margin-bottom: .5em;
+#cart_layout_1 .complete_cart .updated .shipping h2{
+  font-size:2.6em;
+  margin-top:-2px;
+  margin-bottom:0;
 }
-
-h3 {
-	font-size: 1em;
-	font-family: $ fontSans;
-	font-weight: bold;
-	text-transform: uppercase;
-	letter-spacing: .025em;
+#cart_layout_1 .complete_cart .updated .shipping .state{
+  width: 30%;
+  float:left;
+  max-width:120px;
+  height: 30px;
+  overflow: hidden;
+  background: url('http://i.imgur.com/10e9Roz.png') no-repeat right #FFF;
+  border: 1px solid #ccc;
+  border-radius:3px;
+  margin:15px 0px;
+  display:inline-block;
 }
-
-p {
-	display: inline-block;
-	font-size: .85em;
-	color: #777777;
-	font-family: $ fontSans; . quantity { font-weight : bold;
-	color: #333;
+#cart_layout_1 .complete_cart .updated .shipping .state select{
+  background: transparent;
+  display:block;
+  width: 268px;
+  padding: 5px;
+  font-size: 1.5em;
+  line-height: 1;
+  border: 0;
+  border-radius:0;
+  height: 30px;
+  -webkit-appearance: none;
 }
-
-&
-.stockStatus {
-	color: #82CA9C;
-	font-weight: bold;
-	padding: .5em 0 0 1em;
-	text-transform: uppercase;
-	&.
-	out
-	{
-	color
-	:
-	#F69679;
+#cart_layout_1 .complete_cart .updated .shipping .zip{
+  display:inline-block;
+  float:left;
+  width:30%;
+  margin-left:5%;
 }
-
+#cart_layout_1 .complete_cart .updated .shipping .zip input{
+  height:30px;
+  width:100%;
+  margin:15px 0px;
+  border:1px solid #ccc;
+  border-radius:3px;
+  padding-left:5px;
 }
+#cart_layout_1 .complete_cart .updated .shipping .calc{
+  width:30%;
+  display:inline-block;
+  float:left;
+  margin-top;15px;
+  margin-left:4%;
 }
-.itemImg {
-	width: 4em;
-	float: left;
+.button{
+  margin-top:15px;
+  background:#ffc04d;
+  height:35px;
+  display:block;
+  color:#FFF;
+  text-align:center;
+  padding:5px;
+  text-decoration:none;
+  font-size:2em;
+  box-sizing:border-box;
+  border-radius:3px;
 }
-
-&
-.qtyWrap, &.prodTotal {
-	text-align: center; p { font-weight : bold;
-	font-size: 1.25em;
+#cart_layout_1 .complete_cart .updated .coupon{
+  width:100%;
+  float:left;
+  margin-bottom:10px;
 }
-
+#cart_layout_1 .complete_cart .updated .coupon h2{
+  font-size:1.6em;
+  display:inline-block;
+  float:left;
+  width:30%;
 }
-input.qty {
-	width: 2em;
-	text-align: center;
-	font-size: 1em;
-	padding: .25em;
-	margin: 1em .5em 0 0;
+#cart_layout_1 .complete_cart .updated .coupon input{
+ display:inline-block;
+ float:left;
+ margin-top:10px;
+ margin-left:10px;
+ width:30%;
+ height:30px;
+ border-radius:3px;
+ border: 1px solid #ccc;
 }
-
-.itemImg {
-	width: 8em;
-	display: inline;
-	padding-right: 1em;
+#cart_layout_1 .complete_cart{
+  float:left;
+  width:100%;
+  border-bottom:5px solid #ccc;
 }
-
+#cart_layout_1 .complete_cart .updated .coupon .update{
+ width:30%;
+  display:inline-block;
+  margin-top:10px;
+  margin-left:15px;
+  float:left;
 }
+#cart_layout_1 .complete_cart .checkout{
+  width:50%;
+  float:left;
+  margin-left:0;
 }
+#cart_layout_1 .complete_cart .checkout .total{
+  width:50%;
+  float:left;
+  position:relative;
+  text-align:center;
 }
-.special {
-	display: block;
-	font-family: $ fontSans; . specialContent { padding : 1em 1em 0;
-	display: block;
-	margin-top: .5em;
-	border-top: 1px solid #dadada; &: before { content : "\21b3";
-	font-size: 1.5em;
-	margin-right: 1em;
-	color: #6f6f6f;
-	font-family: helvetica, arial, sans-serif;
+#cart_layout_1 .complete_cart .checkout h2{
+  display:inline-block;
+  font-size:2.5em;
+  font-weight:500;
+  margin-top:0;
+  margin-bottom;0;
 }
-
-}
-}
-a.remove {
-	text-decoration: none;
-	font-family: $ fontSans;
-	color: #ffffff;
-	font-weight: bold;
-	background: #e0e0e0;
-	padding: .5em;
-	font-size: .75em;
-	display: inline-block;
-	border-radius: 100%;
-	line-height: .85;
-	@
-	include
-	transition(all,
-	.25s,
-	linear);
-	&:
-	hover
-	{
-	background
-	:
-	#f30;
-}
-
-}
-.promoCode {
-	border: 2px solid #efefef;
-	float: left;
-	width: 35%;
-	padding: 2%; label { display : block;
-	width: 100%;
-	font-style: italic;
-	font-size: 1.15em;
-	margin-bottom: .5em;
-	letter-spacing: -.025em;
-}
-
-input {
-	width: 85%;
-	font-size: 1em;
-	padding: .5em;
-	float: left;
-	border: 1px solid #dadada;
-	&:
-	active
-	,
-	&
-	:
-	focus
-	{
-	
-      
-	outline
-	:
-	 
-	0;
-}
-
-}
-a.btn {
-	float: left;
-	width: 15%;
-	padding: .75em 0;
-	border-radius: 0 1em 1em 0;
-	text-align: center;
-	border: 1px solid #82ca9c; &: hover { border : 1px solid #f69679;
-	background: #f69679;
-}
-
-}
-}
-.btn { &:link , &:visited {
-      text-decoration : none;
-	font-family: $ fontSans;
-	letter-spacing: -.015em;
-	font-size: 1em;
-	padding: 1em 3em;
-	color: #fff;
-	background: #82ca9c;
-	font-weight: bold;
-	border-radius: 50px;
-	float: right;
-	text-align: right;
-	@
-	include
-	transition(all,
-	.25s,
-	linear);
-}
-
-&
-:after {
-	content: "\276f";
-	padding: .5em;
-	position: relative;
-	right: 0;
-	@
-	include
-	transition(all,
-	.15s,
-	linear);
-}
-
-&
-:hover, &:focus, &:active {
-	background: #f69679;
-	&:
-	after
-	{
-	right
-	:
-	-10px;
-}
-
-}
-.promoCode
- 
-&
-{
-font-size
-:
- 
-.85em
-;
-
-    
-paddding
-:
- 
-.5em
- 
-2
-em
-;
-
+#cart_layout_1 .complete_cart .checkout .sub{
+  display:block;
+  font-size:1.2em;
+  margin-top:-25px;
   
 }
+#cart_layout_1 .complete_cart .subtotal{
+  font-size:3em;
+  width:40%;
+  float:left;
+  text-align:center;
 }
+#cart_layout_1 .complete_cart .bfb{
+  width:100%;
+  float:left;
+  position:relative;
+}
+#cart_layout_1 .mobile{
+  display:none;
+}
+#cart_layout_1 .complete_cart .bfb .button{
+  width:50%;
+  display:block;
+  margin:15px auto;
+  position:absolute;
+  top:45px;
+  left:25%;
+}
+@media (max-width:800px){
+  #cart_layout_1 .complete_cart .updated{
+     width:65%;
+  }
+  #cart_layout_1 .complete_cart .checkout{
+    width:35%; 
+  }
+}
+@media (max-width:600px){
+  #cart_layout_1 .cart_info .product{
+    width:100%;
+  }
+  #cart_layout_1 .updated{
+    display:none;
+  }
+  #cart_layout_1 .mobile{
+    display:block;
+  }
+   #cart_layout_1 .cart_info{
+     display:block;
+     width:100%;
+     height:auto;
+     padding:0;
+     margin:0;
+   }
+  #cart_layout_1 .cart_info .product_info{
+    width:100%;
+    margin-left:0;
+    border-bottom:2px solid #ccc;
+    margin-bottom:10px;
+  }
+   #cart_layout_1 .cart_info .product_info span{
+     display:inline-block;
+     margin:5px;
+   }
+  #cart_layout_1 .cart_info .center{
+    position:initial;
+  }
+  #cart_layout_1 .cart_info .details{
+     width:100%;
+    margin:0;
+  }
+   #cart_layout_1 .cart_info .details .qty{
+     width:50%;
+     float:right;
+   }
+  #cart_layout_1 .cart_info .details .price{
+    width:50%;
+    text-align:center;
+  }
+  #cart_layout_1 .cart_info .details .remove{
+    width:100%;
+    border-top:2px solid #ccc;
+    margin-top:10px;
+    border-bottom:5px solid #ccc;
+  }
+   #cart_layout_1 .cart_info .details .remove .hidden{
+     display:inline-block;
+     font-size:.5em;
+     float:left;
+     margin-top:15px;
+   }
+   #cart_layout_1 .cart_info .details .remove i{
+     float:right;
+     margin-right:10%;
+     margin-top:5px;
+     margin-bottom:5px;
+   }
+  #cart_layout_1 .complete_cart{
+    float:right;
+  }
+   #cart_layout_1 .complete_cart .updated{
+    float:left;
+     width:100%;
+   }
+  #cart_layout_1 .complete_cart .updated .shipping .state{
+    width:100%;
+    max-width:320px;
+    display:block;
+    margin-left: auto;
+    margin-right:auto;
+  }
+  #cart_layout_1 .complete_cart .updated .shipping .state select{
+  }
+  #cart_layout_1 .complete_cart .updated .shipping .zip{
+    width:100%;
+    max-width:300px;
+    margin-left:0;
+  }
+    #cart_layout_1 .complete_cart .checkout{
+      width:100%;      
+    }
+    
+ #cart_layout_1 .complete_cart .updated .shipping .calc{
+   width:100%;
+   margin:0;
+   margin-bottom:10px;
+ } #cart_layout_1 .complete_cart .updated .coupon h2{
+   width:100%;
+ }
+  #cart_layout_1 .complete_cart .updated .coupon input{
+    width:100%;
+    margin-left:0;
+  }
+   #cart_layout_1 .complete_cart .updated .coupon .button{
+     width:100%;
+     margin:0;
+     margin-top:10px;
+   }
+  #cart_layout_1 .checkout{
+    float:left;
+    border-bottom:5px solid #ccc;
+  }
+  #cart_layout_1 .complete_cart .bfb .button {
+  width: 100%;
+    position:initial;
+    float:left;
+  }
 
-/* TOTAL AND CHECKOUT  */
-.subtotal {
-	float: right;
-	width: 35%; . totalRow { padding : .5em;
-	text-align: right; &. final { font-size : 1.25em;
-	font-weight: bold;
-}
-
-span {
-	display: inline-block;
-	padding: 0 0 0 1em;
-	text-align: right;
-}
-
-.label {
-	font-family: $ fontSans;
-	font-size: .85em;
-	text-transform: uppercase;
-	color: #777;
-}
-
-.value {
-	letter-spacing: -.025em;
-	width: 35%;
-}
-
-}
-}
-@media only screen and (max-width:39.375em) {
-	.wrap {
-		width: 98%;
-		padding: 2% 0;
-	}
-	.projTitle {
-		font-size: 1.5em;
-		padding: 10% 5%;
-	}
-	.heading {
-		padding: 1em;
-		font-size: 90%;
-	}
-	.cart { .items { .cartSection { width:90%;
-		display: block;
-		float: left; &. qtyWrap { width : 10%;
-		text-align: center;
-		padding: .5em 0;
-		float: right; &: before { content : "QTY";
-		display: block;
-		font-family: $ fontSans;
-		padding: .25em;
-		font-size: .75em;
-	}
-}
-
-&
-.prodTotal, &.removeWrap {
-	display: none;
-}
-
-.itemImg {
-	width: 25%;
-}
-
-}
-}
-}
-.promoCode, .subtotal {
-	width: 100%;
-}
-
-a.btn.continue {
-	width: 100%;
-	text-align: center;
-}
-}
 </style>
 
-<script>
-	//Remove Items From Cart
-	$('a.remove').click(function() {
-		event.preventDefault();
-		$(this).parent().parent().parent().hide(400);
-
-	})
-
-	// Just for testing, show all items
-	$('a.btn.continue').click(function() {
-		$('li.items').show(400);
-	})
-</script>
 <body>
-	<div class="wrap cf">
-		<h1 class="projTitle">
-			Responsive Table<span>-Less</span> Shopping Cart
-		</h1>
-		<div class="heading cf">
-			<h1>My Cart</h1>
-			<a href="#" class="continue">Continue Shopping</a>
-		</div>
-		<div class="cart">
-			<!--    <ul class="tableHead">
-      <li class="prodHeader">Product</li>
-      <li>Quantity</li>
-      <li>Total</li>
-       <li>Remove</li>
-    </ul>-->
-			<ul class="cartWrap">
-				<li class="items odd">
-
-					<div class="infoWrap">
-						<div class="cartSection">
-							<img
-								src="http://lorempixel.com/output/technics-q-c-300-300-4.jpg"
-								alt="" class="itemImg" />
-							<p class="itemNumber">#QUE-007544-002</p>
-							<h3>Item Name 1</h3>
-
-							<p>
-								<input type="text" class="qty" placeholder="3" /> x $5.00
-							</p>
-
-							<p class="stockStatus">In Stock</p>
-						</div>
-
-
-						<div class="prodTotal cartSection">
-							<p>$15.00</p>
-						</div>
-						<div class="cartSection removeWrap">
-							<a href="#" class="remove">x</a>
-						</div>
-					</div>
-				</li>
-				<li class="items even">
-
-					<div class="infoWrap">
-						<div class="cartSection">
-
-							<img
-								src="http://lorempixel.com/output/technics-q-c-300-300-4.jpg"
-								alt="" class="itemImg" />
-							<p class="itemNumber">#QUE-007544-002</p>
-							<h3>Item Name 1</h3>
-
-							<p>
-								<input type="text" class="qty" placeholder="3" /> x $5.00
-							</p>
-
-							<p class="stockStatus">In Stock</p>
-						</div>
-
-
-						<div class="prodTotal cartSection">
-							<p>$15.00</p>
-						</div>
-						<div class="cartSection removeWrap">
-							<a href="#" class="remove">x</a>
-						</div>
-					</div>
-				</li>
-
-				<li class="items odd">
-					<div class="infoWrap">
-						<div class="cartSection">
-
-							<img
-								src="http://lorempixel.com/output/technics-q-c-300-300-4.jpg"
-								alt="" class="itemImg" />
-							<p class="itemNumber">#QUE-007544-002</p>
-							<h3>Item Name 1</h3>
-
-							<p>
-								<input type="text" class="qty" placeholder="3" /> x $5.00
-							</p>
-
-							<p class="stockStatus out">Out of Stock</p>
-						</div>
-
-
-						<div class="prodTotal cartSection">
-							<p>$15.00</p>
-						</div>
-						<div class="cartSection removeWrap">
-							<a href="#" class="remove">x</a>
-						</div>
-					</div>
-				</li>
-				<li class="items even">
-					<div class="infoWrap">
-						<div class="cartSection info">
-
-							<img
-								src="http://lorempixel.com/output/technics-q-c-300-300-4.jpg"
-								alt="" class="itemImg" />
-							<p class="itemNumber">#QUE-007544-002</p>
-							<h3>Item Name 1</h3>
-
-							<p>
-								<input type="text" class="qty" placeholder="3" /> x $5.00
-							</p>
-
-							<p class="stockStatus">In Stock</p>
-
-						</div>
-
-
-						<div class="prodTotal cartSection">
-							<p>$15.00</p>
-						</div>
-
-						<div class="cartSection removeWrap">
-							<a href="#" class="remove">x</a>
-						</div>
-					</div>
-					<div class="special">
-						<div class="specialContent">Free gift with purchase!, gift
-							wrap, etc!!</div>
-					</div>
-				</li>
-
-
-				<!--<li class="items even">Item 2</li>-->
-
-			</ul>
-		</div>
-
-		<div class="promoCode">
-			<label for="promo">Have A Promo Code?</label><input type="text"
-				name="promo" placholder="Enter Code" /> <a href="#" class="btn"></a>
-		</div>
-
-		<div class="subtotal cf">
-			<ul>
-				<li class="totalRow"><span class="label">Subtotal</span><span
-					class="value">$35.00</span></li>
-
-				<li class="totalRow"><span class="label">Shipping</span><span
-					class="value">$5.00</span></li>
-
-				<li class="totalRow"><span class="label">Tax</span><span
-					class="value">$4.00</span></li>
-				<li class="totalRow final"><span class="label">Total</span><span
-					class="value">$44.00</span></li>
-				<li class="totalRow"><a href="#" class="btn continue">Checkout</a></li>
-			</ul>
-		</div>
-	</div>
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<body>
+  <div id="wrap">
+    <div id="cart_layout_1">
+      <h1>Shopping Cart</h1>
+      <div class="cart_info">
+        <div class="product">
+          <img src="http://i.imgur.com/b59w7Io.jpg"/>
+        </div>
+        <div class="product_info">
+          <div class="center">
+            <span>Skull Shirt</span><span>Yellow</span><span>Small</span>
+          </div>
+        </div>
+        <div class="details">
+          <div class="qty">
+            <div class="center">
+            <span>QTY:</span><input type="text"></input>
+          </div>
+          </div>
+          <div class="price">
+            <div class="center">
+            <span>$24.99</span>
+            </div>
+          </div>
+          <div class="remove">
+            <div class="center">
+              <span class="hidden">Remove</span><i class="fa fa-times-circle fa-4"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="complete_cart">
+        <div class="updated">
+        <div class="shipping">
+          <h2>Shipping Estimate</h2>
+          <div class="state">
+            <select id="state">
+                   <option value = "1">Alabama</option>
+                   <option value = "2">Alaska</option>
+                   <option value = "3">Arizona</option>
+                   <option value = "4">Etc.</option>
+                 </select>
+          </div>
+          <div class="zip">
+            <input type="text"></input>
+          </div>
+          <div class="calc">
+            <a class="button" href="#">Calculate</a>
+          </div>
+        </div>
+        <div class="coupon">
+          <h2>Coupon Code</h2>
+          <input id="code"></input>
+        <a class="button update">Update Cart</a>
+        </div>
+        </div>
+        <div class="checkout">
+          <div class="total">
+          <h2>Subtotal:</h2>
+          <span class="sub">
+            <small>Excluding Tax and Shipping</small>
+          </span>
+          </div>
+          <span class="subtotal">
+            $24.99
+          </span>
+          <div class="bfb">
+            <a class="button" href="#">Checkout</a>
+          </div>
+        </div>
+         <div class="updated mobile">
+        <div class="shipping">
+          <h2>Shipping Estimate</h2>
+          <div class="state">
+            <select id="state">
+                   <option value = "1">Alabama</option>
+                   <option value = "2">Alaska</option>
+                   <option value = "3">Arizona</option>
+                   <option value = "4">Etc.</option>
+                 </select>
+          </div>
+          <div class="zip">
+            <input type="text"></input>
+          </div>
+          <div class="calc">
+            <a class="button" href="#">Calculate</a>
+          </div>
+        </div>
+        <div class="coupon">
+          <h2>Coupon Code</h2>
+          <input id="code"></input>
+        <a class="button update">Update Cart</a>
+        </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
-
+</body>
 </html>
