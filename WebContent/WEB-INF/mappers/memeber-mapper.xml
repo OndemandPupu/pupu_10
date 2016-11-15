@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="member">
+	<insert id="addMember" parameterType="java.util.HashMap">
+		insert into member
+		values(#{id}, member_seq.nextval, #{name}, #{email}, #{address},
+		#{phone}, #{interest}, #{brith} ,#{gender}, sysdate , #{pass})
+	</insert>
+	<insert id="addMembership" parameterType="java.lang.String">
+		insert into membership
+		values(#{id},#{name} ,0, 1)
+	</insert>
+	<update id="updateMembership" parameterType="java.lang.String">
+		update membership
+		set point= point+10 where id= #{id}
+	</update>
+	<select id="checkmember" resultType="java.util.HashMap">
+		select * from member where
+		id= #{id} and pass = #{pass}
+	</select>
+	<select id="overlapmember" parameterType="java.lang.String"
+		resultType="java.util.HashMap">
+		select * from member where id=#{id}
+	</select>
+	<select id="findpass" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		select * from member where id=#{id } and name=#{name } and
+		email=#{email }
+	</select>
+</mapper>

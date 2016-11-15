@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:c="http://www.springframework.org/schema/c" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:websocket="http://www.springframework.org/schema/websocket"
+	xsi:schemaLocation="http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket-4.3.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.3.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+	<context:component-scan base-package="m.controller"></context:component-scan>
+	<context:component-scan base-package="m.model"></context:component-scan>
+	<mvc:annotation-driven />
+
+	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver"
+		id="beanNameViewResolver" p:order="1" />
+	<!-- 
+	<bean class="org.springframework.web.servlet.view.tiles3.TilesViewResolver"
+		id="tilesViewResolver" p:order="2" />
+
+	<bean class="org.springframework.web.servlet.view.tiles3.TilesConfigurer"
+		id="tilesConfigurer">
+		<property name="definitions">
+			<list>
+				<value>/WEB-INF/tiles-config.xml</value>
+			</list>
+		</property>
+	</bean>
+	
+	-->
+	<bean class="org.apache.tomcat.jdbc.pool.DataSource" id="ds">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+		<property name="url" value="jdbc:oracle:thin:@121.134.125.131:1521:xe" />
+		<property name="username" value="ondemand" />
+		<property name="password" value="oracle" />
+	</bean>
+
+	<!-- factory를 빈으로 등록시켜두기 -->
+	<bean class="org.mybatis.spring.SqlSessionFactoryBean" id="Factory">
+		<property name="dataSource" ref="ds" />
+		<property name="mapperLocations">
+			<list>
+				<value>/WEB-INF/mappers/member-mapper.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+		id="internalResourceViewResolver" p:order="9" p:prefix="/WEB-INF/view/" />
+
+	<!-- multipart 형태의 요청을 처리하는 애를 추가로 등록해야 됨 // 그중에 CommonsMultipartResolver 
+		로 처리를 하겠다고 선택을 한거고, 그리고 commons fifle library를 넣어야 함. 종류는 2-3개 정도가 있는데 .. 
+		뭘 등록을 하던 반듯이 id 를 무조건 multipartResolver 로해야됨 (이름으로 뽑아다가 서블릿에 장착시킴) -->
+	<bean
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
+		id="multipartResolver" />
+
+	<!-- 메일연결 빈을 등록 -->
+	<bean class="org.springframework.mail.javamail.JavaMailSenderImpl"
+		id="javaMailSenderImpl">
+		<property name="host" value="smtp.gmail.com" />
+		<property name="port" value="587" />
+		<property name="username" value="webappmgr" />
+		<property name="password" value="~1q2w3e4r" />
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+				<prop key="mail.smtp.timeout">5000</prop>
+			</props>
+		</property>
+	</bean>
+
+</beans>
