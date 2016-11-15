@@ -11,14 +11,19 @@ public class IndexController {
 
 		return "t:index";
 	}
-	
+
 	@RequestMapping("/login.nhn")
 	public String loginView() {
 		return "login/loginView";
 	}
-	
+
 	@RequestMapping("/member.nhn")
 	public String memberView() {
 		return "login/memberView";
+	}
+
+	@RequestMapping("/cart.nhn")
+	public String cartVeiw() {
+		return "checkout/cart";
 	}
 }
