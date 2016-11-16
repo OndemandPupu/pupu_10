@@ -9,7 +9,6 @@ public class IndexController {
 
 	@RequestMapping("/index.nhn")
 	public String welcome() {
-
 		return "t:index";
 	}
 
@@ -25,7 +24,7 @@ public class IndexController {
 
 	@RequestMapping("/cart.nhn")
 	public String cartVeiw() {
-		return "/1_Header/cart";
+		return "cart";
 	}
 
 }

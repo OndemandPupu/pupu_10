@@ -30,7 +30,6 @@
 				<tiles:insertAttribute name="body" />
 			</div>
 			<div class="col-md-2">
-				<tiles:insertAttribute name="nav" />
 			</div>
 		</div>
 	</div>

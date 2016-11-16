@@ -7,12 +7,12 @@
 			<li><a href="#">Popular</a></li>
 			<li><a href="#">Recommend</a></li>
 			<li><a href="#">Map</a></li>
-			
+
 			<h4>SHOP</h4>
 			<li><a href="#">Explore</a></li>
 			<li><a href="#">New Product</a></li>
 			<li><a href="#">Sale</a></li>
-			
+
 			<h4>BEST</h4>
 			<li><a href="#">Daily</a></li>
 			<li><a href="#">Weekly</a></li>

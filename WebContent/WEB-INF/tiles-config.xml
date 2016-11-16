@@ -10,5 +10,10 @@
 		<put-attribute name="body" value="/WEB-INF/view/common/main.jsp"></put-attribute>
 	</definition>
 
+	<definition name="cart" extends="t:index">
+		<put-attribute name="body" value="/WEB-INF/view/1_Header/cart.jsp"></put-attribute>
+	</definition>
+
+
 
 </tiles-definitions>
